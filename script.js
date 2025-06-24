@@ -29,16 +29,16 @@ function updateMap(time) {
   filtered.forEach(d => {
     const color = getColor(d.wind_speed);
     const icon = L.divIcon({
-      html: \`
-        <svg width="60" height="60" viewBox="0 0 60 60" style="transform: rotate(\${d.direction}deg);">
-          <polygon points="0,30 45,15 45,25 60,30 45,35 45,45" fill="\${color}" />
+      html: `
+        <svg width="60" height="60" viewBox="0 0 60 60" style="transform: rotate(${}d.direction}deg);">
+          <polygon points="0,30 45,15 45,25 60,30 45,35 45,45" fill="${}color}" />
         </svg>
-      \`,
+      `,
       className: ''
     });
 
     L.marker([d.lat, d.lng], { icon: icon })
-      .bindPopup(`<b>\${d.name}</b><br>\${d.datetime}<br>風速: \${d.wind_speed} m/s<br>風向: \${d.direction}°`)
+      .bindPopup(`<b>${}d.name}</b><br>${}d.datetime}<br>風速: ${}d.wind_speed} m/s<br>風向: ${}d.direction}°`)
       .addTo(map);
   });
 
@@ -80,13 +80,14 @@ window.changeSpeed = function () {
 };
 
 function parseDormCSV(csvText) {
-  return csvText.trim().split("\n").slice(1).map(row => {
+  return csvText.trim().split("
+").slice(1).map(row => {
     const cols = row.split(',');
     const date = cols[0].replaceAll('/', '-');
     const time = cols[1].slice(0,5);
     return {
       name: "学生寮屋上",
-      datetime: \`\${date} \${time}:00\`,
+      datetime: `${}date} ${}time}:00`,
       lat: 35.27549,
       lng: 136.23590,
       direction: parseFloat(cols[2]),
@@ -96,7 +97,8 @@ function parseDormCSV(csvText) {
 }
 
 function parseYachtCSV(csvText) {
-  return csvText.trim().split("\n").slice(1).map(row => {
+  return csvText.trim().split("
+").slice(1).map(row => {
     const cols = row.split(',');
     const datetime = new Date(cols[0]);
     const y = datetime.getFullYear();
@@ -106,7 +108,7 @@ function parseYachtCSV(csvText) {
     const mm = String(datetime.getMinutes()).padStart(2, '0');
     return {
       name: "ヨット部艇庫",
-      datetime: \`\${y}-\${m}-\${d} \${hh}:\${mm}:00\`,
+      datetime: `${}y}-${}m}-${}d} ${}hh}:${}mm}:00`,
       lat: 35.28265,
       lng: 136.24581,
       direction: parseFloat(cols[3]),
