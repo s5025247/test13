@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <title>風向・風速マップ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #eef6fb;
+    }
+    #map {
+      height: 80vh;
+    }
+    .controls {
+      padding: 10px;
+      text-align: center;
+      background: #cce6ff;
+    }
+    .controls button {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+    }
+    .arrow {
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-right: 20px solid currentColor;
+      transform-origin: 0 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <div>表示中の日時: <span id="currentTime">--</span></div>
+    <input type="range" id="timeSlider" min="0" step="1">
+    <br/>
+    <button onclick="togglePlayback()">▶ 再生</button>
+    <button onclick="changeSpeed()">⏩ 倍速: <span id="speedLabel">1x</span></button>
+  </div>
+  <div id="map"></div>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
